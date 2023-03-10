@@ -1,6 +1,9 @@
 function logger(req, res, next) {
   // DO YOUR MAGIC
-  console.log('logger middleware');
+  const timeStamp = new Date().toLocaleString()
+  const method = req.method
+  const URL = req.originalURL
+  console.log(`[${timeStamp}] ${method} to ${URL}`);
   next();      
 }
 
@@ -20,6 +23,13 @@ function validatePost(req, res, next) {
   // DO YOUR MAGIC
   console.log('validatePost middleware');
   next();
+}
+
+module.exports = {
+  logger,
+  validateUserId,
+  validateUser,
+  validatePost,
 }
 
 // do not forget to expose these functions to other modules
