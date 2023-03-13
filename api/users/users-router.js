@@ -49,9 +49,13 @@ router.put('/:id', validateUserId, validateUser, (req, res, next) => {
 //and it is returning the ID of the one that was updating and 'then' sending back that user
 //with json
 
-router.delete('/:id', validateUserId, (req, res) => {
-  // RETURN THE FRESHLY DELETED USER OBJECT
-  // this needs a middleware to verify user id
+router.delete('/:id', validateUserId, async (req, res, next) => {
+  try {
+    await User.remove(req.params.id)
+    res.json(req.user)
+  } catch (err) {
+    next(err)
+  }
 });
 
 router.get('/:id/posts', validateUserId, (req, res) => {
