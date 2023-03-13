@@ -10,6 +10,7 @@ server.use(express.json())
 
 server.use(logger)
 
+
 server.use('./api/users', usersRouter)
 
 // remember express by default cannot parse JSON in request bodies
