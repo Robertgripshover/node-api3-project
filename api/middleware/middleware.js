@@ -1,12 +1,15 @@
+
+
 const User = require('../users/users-model')
 
 
+
 function logger(req, res, next) {
-  // DO YOUR MAGIC
+  console.log('logger middlwware')
   const timeStamp = new Date().toLocaleString()
   const method = req.method
-  const URL = req.originalURL
-  console.log(`[${timeStamp}] ${method} to ${URL}`);
+  const url = req.originalUrl
+  console.log(`[${timeStamp}] ${method} to ${url}`);
   next();      
 }
 
